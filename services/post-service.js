@@ -58,4 +58,4 @@ class Posts {
 
 }
 
-module.exports = new Posts(2)
+module.exports = new Posts(15)
