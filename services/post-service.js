@@ -23,20 +23,27 @@ class Posts {
         return localPosts
     }
 
+    addDays(base, days) {
+        const date = new Date(base.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
     generatePosts(qnt) {
         const allPosts = {}
+        const dataBase = new Date()
         for (var i = 0; i < qnt; i++) {
-            const post = this.generatePost()
+            const post = this.generatePost(this.addDays(dataBase, i-qnt))
             allPosts[post.id] = post
         }
         return allPosts
     }
 
-    generatePost() {
+    generatePost(data) {
         const article = txtgen.article();
         const sentence = txtgen.sentence();
         const imageUrl = this.getNextImage()
-        return { id: uuidv4(), title: sentence, image: imageUrl, body: article }
+        return { id: uuidv4(), titulo: sentence, dataPublicacao: data, imagem: imageUrl, corpo: article }
     }
 
     getNextImage(){
@@ -51,4 +58,4 @@ class Posts {
 
 }
 
-module.exports = new Posts(15)
+module.exports = new Posts(2)
