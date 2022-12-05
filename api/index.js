@@ -2,7 +2,7 @@ const app = require('express')();
 const { v4 } = require('uuid');
 const postService = require('../services/post-service');
 
-app.get('/blog', (req, res) => {
+app.get('/api/blog', (req, res) => {
 //   const path = `/api/item/${v4()}`;
 //   res.setHeader('Content-Type', 'text/html');
 //   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
@@ -11,7 +11,7 @@ app.get('/blog', (req, res) => {
     res.send(response)
 });
 
-app.get('/post/:slug', (req, res) => {
+app.get('/api/post/:slug', (req, res) => {
     const { slug } = req.params;
     const post = postService.findById(slug)
     if (post !== undefined){
