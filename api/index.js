@@ -11,9 +11,14 @@ app.get('/api', (req, res) => {
     res.send(response)
 });
 
-app.get('/api/item/:slug', (req, res) => {
-  const { slug } = req.params;
-  res.end(`Item: ${slug}`);
+app.get('/api/:slug', (req, res) => {
+    const { slug } = req.params;
+    const post = postService.findById(slug)
+    if (post !== undefined){
+        res.send(JSON.stringify(post))
+    }else{
+        res.send({})
+    }
 });
 
 module.exports = app;
